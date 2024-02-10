@@ -36,7 +36,7 @@ const PostWidget = ({
 //   console.log(token);
   const patchLike = async () => {
     const response = await fetch(
-      `http://localhost:8888/api/posts/${postId}/like`,
+      `https://mern-social-media-r34j.vercel.app/api/posts/${postId}/like`,
       {
         method: "PATCH",
         headers: {
@@ -68,7 +68,7 @@ const PostWidget = ({
                 height='auto'
                 alt='post'
                 style={{borderRadius: '0.75rem', marginTop : '0.75rem'}}
-                src={`http://localhost:8888/assets/${picturePath}`}
+                src={`https://mern-social-media-r34j.vercel.app/assets/${picturePath}`}
              />
         )}
         <FlexBetween mt='0.25rem'>

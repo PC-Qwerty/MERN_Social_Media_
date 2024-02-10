@@ -20,7 +20,7 @@ const AddWidget = () => {
         width="100%"
         height="auto"
         alt="advertisement"
-        src="http://localhost:8888/assets/Add.png"
+        src="https://mern-social-media-r34j.vercel.app/assets/Add.png"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>

@@ -13,7 +13,7 @@ const FriendsListWidget = ({ userId }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `http://localhost:8888/api/users/${userId}/friends`,
+      `https://mern-social-media-r34j.vercel.app/api/users/${userId}/friends`,
       {
         method: 'GET',
         headers : {Authhorization : `Bearer ${token}`},

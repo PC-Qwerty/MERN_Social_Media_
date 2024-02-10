@@ -68,7 +68,7 @@ const Form = () => {
     formData.append('picturePath' , values.picture.name); // here picture is referenced from form with 'picture' in the image input section
     // console.log(formData);
     const savedUserResponse = await fetch(
-        "http://localhost:8888/api/auth/register",
+        "https://mern-social-media-r34j.vercel.app/api/auth/register",
         {
             method : "POST",
             body : formData,
@@ -86,7 +86,7 @@ const Form = () => {
 
   const login = async (values , onSubmitProps) => {
     const loggedInUserResponse = await fetch(
-        "http://localhost:8888/api/auth/login",
+        "https://mern-social-media-r34j.vercel.app/api/auth/login",
         {
             method : "POST",
             headers : { "Content-Type" : "application/json"},

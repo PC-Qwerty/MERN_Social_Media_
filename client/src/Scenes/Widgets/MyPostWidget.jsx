@@ -46,7 +46,7 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
     // posts the image to the backend
-    const response = await fetch(`http://localhost:8888/api/posts`, {
+    const response = await fetch(`https://mern-social-media-r34j.vercel.app/api/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
