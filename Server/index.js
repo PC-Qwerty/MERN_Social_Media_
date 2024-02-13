@@ -57,7 +57,7 @@ const upload = multer({storage}); //uploading is done using this variable
 
 //mongodb connection configuration (mongoose)
 const PORT = process.env.PORT || 3830;
-mongoose.connect(process.env.MONGO , {
+mongoose.connect('mongodb+srv://admin_user:admin980_@cluster0.tpybjwg.mongodb.net/Project_Social_media_MERN?retryWrites=true&w=majority' , {
     useNewurlParser: true, //to parse the url provided
     useUnifiedTopology: true
 }).then(() => {
