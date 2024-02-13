@@ -32,16 +32,16 @@ app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.json({limit: '30mb' ,extended : true}));
 app.use(bodyParser.urlencoded({limit :'30mb' , extended : true}));
-app.use(cors(
-    {
-        origin:["https://mern-social-media-gold.vercel.app/"],
-        methods:["POST","GET"],
-        credentials:true
-    }
-));
+// app.use(cors(
+//     {
+//         origin:["https://mern-social-media-gold.vercel.app/"],
+//         methods:["POST","GET"],
+//         credentials:true
+//     }
+// ));
 app.use((req, res) => {
     //set header first to allow request or origin domain (value can be different)
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', "https://mern-social-media-gold.vercel.app/");
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
