@@ -39,6 +39,19 @@ app.use(cors(
         credentials:true
     }
 ));
+app.use((req, res) => {
+    //set header first to allow request or origin domain (value can be different)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+    if(req.method === 'OPTIONS') {
+        return res.status(200).json(({
+            body: "OK"
+        }))
+    }
+
+})
 app.use("/assets" , express.static(path.join(__dirname , 'public/assets'))); // set the directory to store assets locally (here aassets like images) in real life stores in actual file storage or cloud storage
 
 
