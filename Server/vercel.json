@@ -8,11 +8,11 @@
        ],
        "headers": [
          {
-           "source": "/api/(.*)",
+           "source": "/(.*)",
            "headers": [
              {
                "key": "Access-Control-Allow-Origin",
-               "value": "*"
+               "value": "https://mern-social-media-gold.vercel.app/"
              },
              {
                "key": "Access-Control-Allow-Headers",
