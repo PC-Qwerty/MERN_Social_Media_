@@ -68,7 +68,7 @@ const Form = () => {
     formData.append('picturePath', values.picture.name); // here picture is referenced from form with 'picture' in the image input section
     // console.log(formData);
     const savedUserResponse = await fetch(
-      `${REACT_APP_BACKEND_URL}/api/auth/register`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
       {
         method: "POST",
         body: formData,
@@ -86,7 +86,7 @@ const Form = () => {
 
   const login = async (values, onSubmitProps) => {
     const loggedInUserResponse = await fetch(
-      `${REACT_APP_BACKEND_URL}/api/auth/login`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
