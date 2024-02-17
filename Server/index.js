@@ -51,6 +51,8 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 //     }
 
 // })
+
+
 app.use("/assets", express.static(path.join(__dirname, 'public/assets'))); // set the directory to store assets locally (here aassets like images) in real life stores in actual file storage or cloud storage
 
 
