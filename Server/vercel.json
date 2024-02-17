@@ -12,7 +12,7 @@
            "headers": [
              {
                "key": "Access-Control-Allow-Origin",
-               "value": "https://mern-social-media-gold.vercel.app/"
+               "value": "https://mern-social-media-gold.vercel.app"
              },
              {
                "key": "Access-Control-Allow-Headers",
