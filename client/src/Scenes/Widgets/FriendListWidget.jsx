@@ -13,39 +13,39 @@ const FriendsListWidget = ({ userId }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `http://localhost:8888/api/users/${userId}/friends`,
+      `${REACT_APP_BACKEND_URL}/api/users/${userId}/friends`,
       {
         method: 'GET',
-        headers : {Authhorization : `Bearer ${token}`},
+        headers: { Authhorization: `Bearer ${token}` },
       }
     );
     const data = await response.json();
-    dispatch(setFriends({ friends : data }));
+    dispatch(setFriends({ friends: data }));
   };
   useEffect(() => {
     getFriends();
-},[]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
   return (
     <WidgetWrapper>
-        <Typography
-            color={palette.neutral.dark}
-            variant='h5'
-            fontWeight='500'
-            sx={{mb:'1.5rem'}}
-        >
-            Friends List
-        </Typography>
-        <Box display='flex' flexDirection='column' gap='1.5rem'>
-            {friends.map((friend) => (
-                <Friend
-                    key={friend._id}
-                    friendId = {friend._id}
-                    name={`${friend.firstName} ${friend.lastName}`}
-                    subtitle={friend.occupation}
-                    userPicturePath={friend.picturePath}
-                />
-            ))}
-        </Box>
+      <Typography
+        color={palette.neutral.dark}
+        variant='h5'
+        fontWeight='500'
+        sx={{ mb: '1.5rem' }}
+      >
+        Friends List
+      </Typography>
+      <Box display='flex' flexDirection='column' gap='1.5rem'>
+        {friends.map((friend) => (
+          <Friend
+            key={friend._id}
+            friendId={friend._id}
+            name={`${friend.firstName} ${friend.lastName}`}
+            subtitle={friend.occupation}
+            userPicturePath={friend.picturePath}
+          />
+        ))}
+      </Box>
     </WidgetWrapper>
   );
 };

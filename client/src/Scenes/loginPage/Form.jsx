@@ -62,51 +62,51 @@ const Form = () => {
     // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
-        // here FormData used is an object uses mapping value with value in the array 
+      // here FormData used is an object uses mapping value with value in the array 
       formData.append(value, values[value]); // normally not a legal method but due to image to be uploaded .. Each form value is appended
     }
-    formData.append('picturePath' , values.picture.name); // here picture is referenced from form with 'picture' in the image input section
+    formData.append('picturePath', values.picture.name); // here picture is referenced from form with 'picture' in the image input section
     // console.log(formData);
     const savedUserResponse = await fetch(
-        "http://localhost:8888/api/auth/register",
-        {
-            method : "POST",
-            body : formData,
-        }
+      `${REACT_APP_BACKEND_URL}/api/auth/register`,
+      {
+        method: "POST",
+        body: formData,
+      }
     );
     const savedUser = await savedUserResponse.json();
-    
+
     onSubmitProps.resetForm();
 
     // need to change this without going to login page after user registered
     if (savedUser) {
-        setPageType('login');
+      setPageType('login');
     }
   };
 
-  const login = async (values , onSubmitProps) => {
+  const login = async (values, onSubmitProps) => {
     const loggedInUserResponse = await fetch(
-        "http://localhost:8888/api/auth/login",
-        {
-            method : "POST",
-            headers : { "Content-Type" : "application/json"},
-            body : JSON.stringify(values)
-        }
+      `${REACT_APP_BACKEND_URL}/api/auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values)
+      }
     );
     const loggedInUser = await loggedInUserResponse.json();
     onSubmitProps.resetForm();
     if (loggedInUser) {
-        dispatch(
-            setLogin({
-                user : loggedInUser.user,
-                token : loggedInUser.token,
-            })
-        );
-        // console.log(JSON.stringify(loggedInUser.user));
-        // console.log(JSON.stringify(loggedInUser.token));
-        // console.log(loggedInUser);
-        navigate('/home');
-        // console.log("LOGIN COMPLETE");
+      dispatch(
+        setLogin({
+          user: loggedInUser.user,
+          token: loggedInUser.token,
+        })
+      );
+      // console.log(JSON.stringify(loggedInUser.user));
+      // console.log(JSON.stringify(loggedInUser.token));
+      // console.log(loggedInUser);
+      navigate('/home');
+      // console.log("LOGIN COMPLETE");
     }
   }
 

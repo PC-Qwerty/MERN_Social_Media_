@@ -9,7 +9,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch(`http://localhost:8888/api/posts`, {
+    const response = await fetch(`${REACT_APP_BACKEND_URL}/api/posts`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   };
   const getUserPosts = async () => {
     const response = await fetch(
-      `http://localhost:8888/api/posts/${userId}/posts`,
+      `${REACT_APP_BACKEND_URL}/api/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

@@ -20,7 +20,7 @@ const AddWidget = () => {
         width="100%"
         height="auto"
         alt="advertisement"
-        src="http://localhost:8888/assets/Add.png"
+        src={`${REACT_APP_BACKEND_URL}/assets/Add.png`}
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>

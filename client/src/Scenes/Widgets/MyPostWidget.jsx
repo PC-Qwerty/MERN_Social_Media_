@@ -46,7 +46,7 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
     // posts the image to the backend
-    const response = await fetch(`http://localhost:8888/api/posts`, {
+    const response = await fetch(`${REACT_APP_BACKEND_URL}/api/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -161,15 +161,15 @@ const MyPostWidget = ({ picturePath }) => {
         )}
 
         <Button
-            disabled={!post}
-            onClick={handlePost}
-            sx={{
-                color: palette.background.alt,
-                backgroundColor: palette.primary.main,
-                borderRadius : '3rem'
-            }}
+          disabled={!post}
+          onClick={handlePost}
+          sx={{
+            color: palette.background.alt,
+            backgroundColor: palette.primary.main,
+            borderRadius: '3rem'
+          }}
         >
-            Post
+          Post
         </Button>
       </FlexBetween>
     </WidgetWrapper>
