@@ -14,7 +14,6 @@ const ProfilePage = () => {
   const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
 
-<<<<<<< HEAD
   const getUser = async () => {
     const response = await fetch(`${REACT_APP_BACKEND_URL}/api/users/${userId}`, {
       method: 'GET',
@@ -26,19 +25,6 @@ const ProfilePage = () => {
   useEffect(() => {
     getUser();
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
-=======
-    const getUser = async ()=> {
-        const response = await fetch(`https://mern-social-media-r34j.vercel.app/api/users/${userId}`,{
-            method: 'GET',
-            headers : { Authorization : `Bearer ${token}`},
-        });
-        const data = await response.json();
-        setUser(data);
-    };
-    useEffect(() => {
-        getUser();
-    },[]); //eslint-disable-line react-hooks/exhaustive-deps
->>>>>>> 8ef08f51d2da108e8d76ee4889e5d11981ad8026
 
   if (!user) return null;
 
