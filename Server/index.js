@@ -11,8 +11,8 @@ import { fileURLToPath } from 'url';
 import authRoute from './routes/auth.js';
 import usersRoute from './routes/users.js';
 import postsRoute from './routes/posts.js';
-import {register} from './Controllers/auth.js';
-import {createPost} from './Controllers/posts.js';
+import { register } from './Controllers/auth.js';
+import { createPost } from './Controllers/posts.js';
 import { verifyToken } from './Middleware/authorize.js';
 import User from './data models/User.js';
 import Post from './data models/Post.js';
@@ -28,17 +28,16 @@ const app = express();
 //what these should do?
 app.use(express.json());
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
-app.use(bodyParser.json({limit: '30mb' ,extended : true}));
-app.use(bodyParser.urlencoded({limit :'30mb' , extended : true}));
-// app.use(cors(
-//     {
-//         origin:["https://mern-social-media-gold.vercel.app/"],
-//         methods:["POST","GET"],
-//         credentials:true
-//     }
-// ));
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+app.use(cors({
+    origin: 'https://mern-social-media-gold.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // app.use((req, res) => {
 //     //set header first to allow request or origin domain (value can be different)
 //     res.setHeader('Access-Control-Allow-Origin', "https://mern-social-media-gold.vercel.app/");
@@ -52,34 +51,34 @@ app.use(bodyParser.urlencoded({limit :'30mb' , extended : true}));
 //     }
 
 // })
-app.use("/assets" , express.static(path.join(__dirname , 'public/assets'))); // set the directory to store assets locally (here aassets like images) in real life stores in actual file storage or cloud storage
+app.use("/assets", express.static(path.join(__dirname, 'public/assets'))); // set the directory to store assets locally (here aassets like images) in real life stores in actual file storage or cloud storage
 
 
 // file storage configurations
 const storage = multer.diskStorage( // -- what multer do? // saves files when someone uploads it saves in the below mentioned..
     {
-        destination : function(req,file,cb){
-            cb(null,"public/assets");
+        destination: function (req, file, cb) {
+            cb(null, "public/assets");
         },
-        filename: function(req,file,cb){
-            cb(null,file.originalname);
+        filename: function (req, file, cb) {
+            cb(null, file.originalname);
         }
     }
 );
-const upload = multer({storage}); //uploading is done using this variable
+const upload = multer({ storage }); //uploading is done using this variable
 
 //mongodb connection configuration (mongoose)
 const PORT = process.env.PORT || 3830;
-mongoose.connect('mongodb+srv://admin_user:admin980_@cluster0.tpybjwg.mongodb.net/Project_Social_media_MERN?retryWrites=true&w=majority' , {
+mongoose.connect('mongodb+srv://admin_user:admin980_@cluster0.tpybjwg.mongodb.net/Project_Social_media_MERN?retryWrites=true&w=majority', {
     useNewurlParser: true, //to parse the url provided
     useUnifiedTopology: true
 }).then(() => {
-    app.listen(PORT , ()=> console.log(`Connected to ${PORT}..`));
+    app.listen(PORT, () => console.log(`Connected to ${PORT}..`));
 
     // ADDING MOCK DATA TO DB(must be done only once)
     // User.insertMany(users);
     // Post.insertMany(posts);
-    
+
 }).catch((err) => console.error(`${err} connecting..`));
 
 // if connecting issues persist during using the application
@@ -92,11 +91,11 @@ mongoose.connect('mongodb+srv://admin_user:admin980_@cluster0.tpybjwg.mongodb.ne
 
 
 //routes with files
-app.post('/api/auth/register', upload.single('picture') , register); // kept separate from routes folder because of upload(multer)..
-app.post('/api/posts' , verifyToken, upload.single('picture') , createPost);
+app.post('/api/auth/register', upload.single('picture'), register); // kept separate from routes folder because of upload(multer)..
+app.post('/api/posts', verifyToken, upload.single('picture'), createPost);
 //routes
-app.use('/api/auth' , authRoute);
-app.use('/api/users' , usersRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/users', usersRoute);
 app.use('/api/posts', postsRoute);
 
 // Just practice
