@@ -32,7 +32,26 @@ app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.json({limit: '30mb' ,extended : true}));
 app.use(bodyParser.urlencoded({limit :'30mb' , extended : true}));
-app.use(cors());
+// app.use(cors(
+//     {
+//         origin:["https://mern-social-media-gold.vercel.app/"],
+//         methods:["POST","GET"],
+//         credentials:true
+//     }
+// ));
+// app.use((req, res) => {
+//     //set header first to allow request or origin domain (value can be different)
+//     res.setHeader('Access-Control-Allow-Origin', "https://mern-social-media-gold.vercel.app/");
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+//     if(req.method === 'OPTIONS') {
+//         return res.status(200).json(({
+//             body: "OK"
+//         }))
+//     }
+
+// })
 app.use("/assets" , express.static(path.join(__dirname , 'public/assets'))); // set the directory to store assets locally (here aassets like images) in real life stores in actual file storage or cloud storage
 
 
@@ -51,7 +70,7 @@ const upload = multer({storage}); //uploading is done using this variable
 
 //mongodb connection configuration (mongoose)
 const PORT = process.env.PORT || 3830;
-mongoose.connect(process.env.MONGO , {
+mongoose.connect('mongodb+srv://admin_user:admin980_@cluster0.tpybjwg.mongodb.net/Project_Social_media_MERN?retryWrites=true&w=majority' , {
     useNewurlParser: true, //to parse the url provided
     useUnifiedTopology: true
 }).then(() => {

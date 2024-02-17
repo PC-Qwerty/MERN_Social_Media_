@@ -30,6 +30,7 @@ const PostWidget = ({
     const isLiked = Boolean(likes[loggedInUserId]); // it says that a particular user liked or not(likes Array uses id as key and boolean as value)
     const likeCount = Object.keys(likes).length;
 
+<<<<<<< HEAD
     const { palette } = useTheme();
     const main = palette.neutral.main;
     const primary = palette.primary.main;
@@ -73,6 +74,51 @@ const PostWidget = ({
             )}
             <FlexBetween mt='0.25rem'>
                 <FlexBetween gap='1rem'>
+=======
+  const { palette } = useTheme();
+  const main = palette.neutral.main;
+  const primary = palette.primary.main;
+//   console.log(token);
+  const patchLike = async () => {
+    const response = await fetch(
+      `https://mern-social-media-r34j.vercel.app/api/posts/${postId}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body : JSON.stringify({ userId: loggedInUserId}) // userId is passed to keep track of whether that user has liked or not 
+      }
+    );
+    // console.log(loggedInUserId);
+    const updatedPost = await response.json(); // updates the likes of the post from backend
+    dispatch(setPost({post : updatedPost}));
+  };
+
+  return (
+    <WidgetWrapper m='2rem 0'>
+        <Friend
+            friendId={postUserId}
+            name={name}
+            subtitle={location}
+            userPicturePath={userPicturePath}
+        />
+        <Typography color={main} sx={{mt:'1rem'}}>
+            {description}
+        </Typography>
+        {picturePath && (
+            <img
+                width='100%'
+                height='auto'
+                alt='post'
+                style={{borderRadius: '0.75rem', marginTop : '0.75rem'}}
+                src={`https://mern-social-media-r34j.vercel.app/assets/${picturePath}`}
+             />
+        )}
+        <FlexBetween mt='0.25rem'>
+            <FlexBetween gap='1rem'>
+>>>>>>> 8ef08f51d2da108e8d76ee4889e5d11981ad8026
 
                     <FlexBetween gap='0.3rem'>
                         <IconButton onClick={patchLike} >

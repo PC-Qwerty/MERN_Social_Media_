@@ -24,7 +24,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const patchFriend = async () => {
     // depending on the above isFriend actions change like adding or removing from the friend list
     const response = await fetch(
+<<<<<<< HEAD
       `${REACT_APP_BACKEND_URL}/api/users/${_id}/${friendId}`,
+=======
+      `https://mern-social-media-r34j.vercel.app/api/users/${_id}/${friendId}`,
+>>>>>>> 8ef08f51d2da108e8d76ee4889e5d11981ad8026
       {
         method: "PATCH",
         headers: {

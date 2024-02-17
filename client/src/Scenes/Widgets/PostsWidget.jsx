@@ -9,7 +9,11 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
+<<<<<<< HEAD
     const response = await fetch(`${REACT_APP_BACKEND_URL}/api/posts`, {
+=======
+    const response = await fetch(`https://mern-social-media-r34j.vercel.app/api/posts`, {
+>>>>>>> 8ef08f51d2da108e8d76ee4889e5d11981ad8026
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,7 +23,11 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   };
   const getUserPosts = async () => {
     const response = await fetch(
+<<<<<<< HEAD
       `${REACT_APP_BACKEND_URL}/api/posts/${userId}/posts`,
+=======
+      `https://mern-social-media-r34j.vercel.app/api/posts/${userId}/posts`,
+>>>>>>> 8ef08f51d2da108e8d76ee4889e5d11981ad8026
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
